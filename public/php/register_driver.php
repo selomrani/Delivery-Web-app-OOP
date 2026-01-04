@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Swift Drop</title>
+    <title>Sign Up - Driver - Swift Drop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
@@ -22,7 +22,7 @@
                 <div class="mx-auto h-14 w-14 flex items-center justify-center rounded-2xl bg-blue-600 shadow-lg shadow-blue-500/30 transform transition-transform hover:scale-105 duration-300">
                     <i data-lucide="package-2" class="w-8 h-8 text-white"></i>
                 </div>
-                <h2 class="mt-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Create account</h2>
+                <h2 class="mt-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Create Driver Account</h2>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                     Join Swift Drop today
                 </p>
@@ -34,33 +34,47 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">I want to join as a:</label>
                     <div class="grid grid-cols-2 gap-4">
-                        <!-- Customer Option -->
-                        <div onclick="selectRole('customer')" id="role-customer" class="cursor-pointer relative rounded-xl border-2 border-blue-500 bg-blue-50/50 dark:bg-blue-900/20 p-4 flex flex-col items-center justify-center text-center transition-all duration-200 ring-2 ring-transparent hover:ring-blue-200 dark:hover:ring-blue-800">
-                            <i data-lucide="user" class="h-6 w-6 text-blue-600 dark:text-blue-400 mb-2"></i>
-                            <span class="block text-sm font-semibold text-blue-900 dark:text-blue-100">Customer</span>
-                            <input type="radio" name="role" value="customer" class="sr-only" checked>
+                        <!-- Customer Option (Inactive - Link) -->
+                        <div onclick="window.location.href='register_client.php'" id="role-customer" class="cursor-pointer relative rounded-xl border-2 border-gray-200 bg-white dark:bg-gray-700 dark:border-gray-700 p-4 flex flex-col items-center justify-center text-center hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200">
+                            <i data-lucide="user" class="h-6 w-6 text-gray-500 dark:text-gray-400 mb-2"></i>
+                            <span class="block text-sm font-semibold text-gray-900 dark:text-gray-200">Customer</span>
                         </div>
 
-                        <!-- Driver Option -->
-                        <div onclick="selectRole('driver')" id="role-driver" class="cursor-pointer relative rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 flex flex-col items-center justify-center text-center hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200">
-                            <i data-lucide="truck" class="h-6 w-6 text-gray-500 dark:text-gray-400 mb-2"></i>
-                            <span class="block text-sm font-semibold text-gray-600 dark:text-gray-300">Driver</span>
-                            <input type="radio" name="role" value="driver" class="sr-only">
+                        <!-- Driver Option (Active) -->
+                        <div id="role-driver" class="cursor-default relative rounded-xl border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-500 p-4 flex flex-col items-center justify-center text-center transition-all duration-200">
+                            <i data-lucide="truck" class="h-6 w-6 text-blue-600 dark:text-blue-400 mb-2"></i>
+                            <span class="block text-sm font-semibold text-blue-900 dark:text-blue-100">Driver</span>
+                            <input type="radio" name="role" value="driver" class="sr-only" checked>
                         </div>
                     </div>
                 </div>
 
                 <!-- Input Fields -->
                 <div class="space-y-4">
-                    <div>
-                        <label for="full-name" class="sr-only">Full Name</label>
-                        <div class="relative group">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i data-lucide="user" class="h-5 w-5 text-gray-400 dark:text-gray-500 transition-colors group-focus-within:text-blue-500"></i>
+                    
+                    <!-- Split Name Fields -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="firstname" class="sr-only">First Name</label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i data-lucide="user" class="h-5 w-5 text-gray-400 dark:text-gray-500 transition-colors group-focus-within:text-blue-500"></i>
+                                </div>
+                                <input id="firstname" name="firstname" type="text" required class="block w-full pl-10 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700/50 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 sm:text-sm" placeholder="First Name">
                             </div>
-                            <input id="full-name" name="full-name" type="text" required class="block w-full pl-10 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700/50 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 sm:text-sm" placeholder="Full Name">
+                        </div>
+
+                        <div>
+                            <label for="lastname" class="sr-only">Last Name</label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i data-lucide="user" class="h-5 w-5 text-gray-400 dark:text-gray-500 transition-colors group-focus-within:text-blue-500"></i>
+                                </div>
+                                <input id="lastname" name="lastname" type="text" required class="block w-full pl-10 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700/50 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 sm:text-sm" placeholder="Last Name">
+                            </div>
                         </div>
                     </div>
+
                     <div>
                         <label for="email-address" class="sr-only">Email address</label>
                         <div class="relative group">
@@ -89,19 +103,18 @@
                         </div>
                     </div>
                     
-                    <!-- Driver Specific Fields (Hidden by default) -->
-                    <div id="driver-fields" class="hidden animate-fade-in-down">
+                    <!-- Driver Specific Fields (Visible) -->
+                    <div id="driver-fields" class="animate-fade-in-down">
                         <label for="vehicle-type" class="sr-only">Vehicle Type</label>
                         <div class="relative group">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i data-lucide="car" class="h-5 w-5 text-gray-400 dark:text-gray-500 transition-colors group-focus-within:text-blue-500"></i>
                             </div>
-                            <select id="vehicle-type" name="vehicle-type" class="block w-full pl-10 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 sm:text-sm appearance-none cursor-pointer">
+                            <select id="vehicle-type" name="vehicle-type" required class="block w-full pl-10 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 sm:text-sm appearance-none cursor-pointer">
                                 <option value="" disabled selected>Select Vehicle Type</option>
                                 <option value="bike">Bicycle</option>
                                 <option value="motorcycle">Motorcycle</option>
-                                <option value="car">Car/Sedan</option>
-                                <option value="van">Van/Truck</option>
+                                <option value="car">Car</option>
                             </select>
                             <!-- Custom Arrow Icon for Select -->
                             <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -129,7 +142,10 @@
             </form>
         </div>
     </div>
-    <!-- Link to external JS -->
-    <script src="../js/register.js"></script>
+    
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>

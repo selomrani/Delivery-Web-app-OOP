@@ -1,15 +1,10 @@
 {
-    "name": "asusrogstrix/delivery-web-app-oop",
+    "name": "soufyan/delivery-web-app-oop",
     "autoload": {
         "psr-4": {
-            "Asusrogstrix\\DeliveryWebAppOop\\": "src/"
+            "App\\": "src/",
+            "Web\\": "public/"
         }
     },
-    "authors": [
-        {
-            "name": "Soufyane el omrani",
-            "email": "soufyan.el.omrani@outlook.com"
-        }
-    ],
     "require": {}
 }

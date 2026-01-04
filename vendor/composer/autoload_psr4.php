@@ -6,5 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Asusrogstrix\\DeliveryWebAppOop\\' => array($baseDir . '/src'),
+    'Web\\' => array($baseDir . '/public'),
+    'App\\' => array($baseDir . '/src'),
 );
