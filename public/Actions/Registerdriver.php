@@ -1,8 +1,6 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
-
 use App\Service\Signupservice;
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         Signupservice::RegisterNewDriver();

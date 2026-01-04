@@ -28,7 +28,7 @@
                 </p>
             </div>
 
-            <form class="mt-8 space-y-6" action="#" method="POST">
+            <form class="mt-8 space-y-6" action="../Actions/Userlogin.php" method="POST">
                 
                 <!-- Input Fields -->
                 <div class="space-y-5">
