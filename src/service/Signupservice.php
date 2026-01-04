@@ -30,5 +30,10 @@ class Signupservice {
         $queryDriver = "INSERT INTO Users (firstname,lastname,phone,email,role,password) VALUES (:firstname,:lastname,:phone,:email,:role,:password)";
         $stmt = $pdo->prepare($queryDriver);
         $stmt->execute($driverdata);
+        $Driver_id = $pdo->lastInsertId();
+        $vehiculequery = "INSERT INTO vehicules (type,model,user_id) VALUES (:type,:model,:user_id)";
+        $stmt = $pdo->prepare($vehiculequery);
+        $vehicule_data['user_id'] = $Driver_id;
+        $stmt->execute($vehicule_data);
     } 
 }

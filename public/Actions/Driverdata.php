@@ -1,5 +1,4 @@
 <?php
-
 namespace Web\Actions;
 
 class Driverdata
@@ -17,8 +16,8 @@ class Driverdata
     }
     public function getvehiculedata(){
         return [
-        'vehicle_type'  => $_POST['vehicle-type'],
-        'vehicle_model' => $_POST['vehicle-model']
+        'type'  => $_POST['vehicle-type'],
+        'model' => $_POST['vehicle-model']
         ];
     }
 }
