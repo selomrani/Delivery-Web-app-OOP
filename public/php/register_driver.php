@@ -6,7 +6,6 @@
     <title>Sign Up - Driver - Swift Drop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body { font-family: 'Inter', sans-serif; }
@@ -17,7 +16,6 @@
     <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 transition-all duration-300">
             
-            <!-- Header & Logo -->
             <div class="text-center">
                 <div class="mx-auto h-14 w-14 flex items-center justify-center rounded-2xl bg-blue-600 shadow-lg shadow-blue-500/30 transform transition-transform hover:scale-105 duration-300">
                     <i data-lucide="package-2" class="w-8 h-8 text-white"></i>
@@ -28,19 +26,16 @@
                 </p>
             </div>
 
-            <form class="mt-8 space-y-6" action="#" method="POST">
+            <form class="mt-8 space-y-6" action="../Actions/Registerdriver.php" method="POST">
                 
-                <!-- Role Selection -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">I want to join as a:</label>
                     <div class="grid grid-cols-2 gap-4">
-                        <!-- Customer Option (Inactive - Link) -->
                         <div onclick="window.location.href='register_client.php'" id="role-customer" class="cursor-pointer relative rounded-xl border-2 border-gray-200 bg-white dark:bg-gray-700 dark:border-gray-700 p-4 flex flex-col items-center justify-center text-center hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200">
                             <i data-lucide="user" class="h-6 w-6 text-gray-500 dark:text-gray-400 mb-2"></i>
                             <span class="block text-sm font-semibold text-gray-900 dark:text-gray-200">Customer</span>
                         </div>
 
-                        <!-- Driver Option (Active) -->
                         <div id="role-driver" class="cursor-default relative rounded-xl border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-500 p-4 flex flex-col items-center justify-center text-center transition-all duration-200">
                             <i data-lucide="truck" class="h-6 w-6 text-blue-600 dark:text-blue-400 mb-2"></i>
                             <span class="block text-sm font-semibold text-blue-900 dark:text-blue-100">Driver</span>
@@ -49,10 +44,8 @@
                     </div>
                 </div>
 
-                <!-- Input Fields -->
                 <div class="space-y-4">
                     
-                    <!-- Split Name Fields -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label for="firstname" class="sr-only">First Name</label>
@@ -103,24 +96,37 @@
                         </div>
                     </div>
                     
-                    <!-- Driver Specific Fields (Visible) -->
-                    <div id="driver-fields" class="animate-fade-in-down">
-                        <label for="vehicle-type" class="sr-only">Vehicle Type</label>
-                        <div class="relative group">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i data-lucide="car" class="h-5 w-5 text-gray-400 dark:text-gray-500 transition-colors group-focus-within:text-blue-500"></i>
-                            </div>
-                            <select id="vehicle-type" name="vehicle-type" required class="block w-full pl-10 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 sm:text-sm appearance-none cursor-pointer">
-                                <option value="" disabled selected>Select Vehicle Type</option>
-                                <option value="bike">Bicycle</option>
-                                <option value="motorcycle">Motorcycle</option>
-                                <option value="car">Car</option>
-                            </select>
-                            <!-- Custom Arrow Icon for Select -->
-                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                <i data-lucide="chevron-down" class="h-4 w-4 text-gray-400"></i>
+                    <div id="driver-fields" class="space-y-4 animate-fade-in-down">
+                        
+                        <div>
+                            <label for="vehicle-type" class="sr-only">Vehicle Type</label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i data-lucide="car" class="h-5 w-5 text-gray-400 dark:text-gray-500 transition-colors group-focus-within:text-blue-500"></i>
+                                </div>
+                                <select id="vehicle-type" name="vehicle-type" required class="block w-full pl-10 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 sm:text-sm appearance-none cursor-pointer">
+                                    <option value="" disabled selected>Select Vehicle Type</option>
+                                    <option value="bike">Bicycle</option>
+                                    <option value="motorcycle">Motorcycle</option>
+                                    <option value="car">Car</option>
+                                    <option value="van">Van/Truck</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <i data-lucide="chevron-down" class="h-4 w-4 text-gray-400"></i>
+                                </div>
                             </div>
                         </div>
+
+                        <div>
+                            <label for="vehicle-model" class="sr-only">Vehicle Model</label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i data-lucide="info" class="h-5 w-5 text-gray-400 dark:text-gray-500 transition-colors group-focus-within:text-blue-500"></i>
+                                </div>
+                                <input id="vehicle-model" name="vehicle-model" type="text" required class="block w-full pl-10 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700/50 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 sm:text-sm" placeholder="Vehicle Model (e.g. Toyota Corolla, Mountain Bike)">
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

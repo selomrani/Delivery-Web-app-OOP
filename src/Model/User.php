@@ -17,6 +17,3 @@ class User {
         
     }
 }
-
-$admin = new User('soufyane','el omrani','0602317825','elomranisoufyan@gmail.com','77889900Ok','Admin');
-var_dump($admin);
