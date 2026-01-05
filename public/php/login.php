@@ -28,7 +28,7 @@
                 </p>
             </div>
 
-            <form class="mt-8 space-y-6" action="#" method="POST">
+            <form class="mt-8 space-y-6" action="../Actions/Userlogin.php" method="POST">
                 
                 <!-- Input Fields -->
                 <div class="space-y-5">
@@ -78,7 +78,7 @@
                 <div class="text-center mt-6">
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         Don't have an account? 
-                        <a href="register.php" class="font-semibold text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+                        <a href="register_client.php" class="font-semibold text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
                             Create account
                         </a>
                     </p>
