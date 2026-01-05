@@ -7,6 +7,7 @@
     </div>
     
     <nav class="flex-1 px-4 py-6 space-y-1.5">
+        <!-- Active Link -->
         <a href="dashboard.php" class="flex items-center px-4 py-2.5 bg-indigo-800 dark:bg-indigo-500/10 text-white dark:text-indigo-300 rounded-xl group transition-all font-medium border border-indigo-700 dark:border-indigo-500/20 shadow-md shadow-indigo-900/20">
             <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3 text-indigo-300 dark:text-indigo-300"></i>
             My Orders
@@ -19,19 +20,21 @@
         <button onclick="toggleModal('notificationsModal')" class="w-full flex items-center px-4 py-2.5 text-indigo-100 dark:text-slate-400 hover:bg-indigo-800/50 dark:hover:bg-slate-800 hover:text-white dark:hover:text-white rounded-xl group transition-all font-medium text-left">
             <div class="relative mr-3">
                 <i data-lucide="bell" class="w-5 h-5 text-indigo-300 group-hover:text-white dark:group-hover:text-slate-300 transition-colors"></i>
+                <!-- PHP: if ($unread_count > 0): -->
                 <span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-indigo-900 dark:border-slate-900"></span>
+                <!-- PHP: endif; -->
             </div>
             Notifications
+            <!-- PHP: if ($unread_count > 0): -->
             <span class="ml-auto text-xs font-semibold bg-indigo-700 text-indigo-100 dark:bg-red-500/20 dark:text-red-400 px-2 py-0.5 rounded-full">3</span>
+            <!-- PHP: endif; -->
         </button>
     </nav>
 
     <div class="p-4 border-t border-indigo-800 dark:border-slate-800">
-        <form action="../Actions/UserLogout.php" method="POST">
-            <button type="submit" name="c_logout" value="logout" class="flex items-center w-full px-4 py-2.5 text-indigo-200 dark:text-slate-400 hover:text-white hover:bg-red-500/20 dark:hover:bg-red-900/10 rounded-xl transition-all group font-medium text-left">
-                <i data-lucide="log-out" class="w-5 h-5 mr-3 group-hover:text-red-300 dark:group-hover:text-red-500"></i>
-                Sign Out
-            </button>
-        </form>
+        <a href="logout.php" class="flex items-center w-full px-4 py-2.5 text-indigo-200 dark:text-slate-400 hover:text-white hover:bg-red-500/20 dark:hover:bg-red-900/10 rounded-xl transition-all group font-medium">
+            <i data-lucide="log-out" class="w-5 h-5 mr-3 group-hover:text-red-300 dark:group-hover:text-red-500"></i>
+            Sign Out
+        </a>
     </div>
 </aside>

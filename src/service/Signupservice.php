@@ -10,6 +10,7 @@ class Signupservice {
     public static function RegisterNewClient() {
         $db = new ConnectDb();
         $pdo = $db->connect();
+
         $clientObj = new Clientdata();
         $userData = $clientObj->getData();
 
