@@ -1,23 +1,25 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
 session_start();
+
 use App\Service\OrderService;
+
 $orders = OrderService::fetchALLorders();
 ?>
 <?php include 'includes/style.php'; ?>
 
 <div class="flex h-screen overflow-hidden">
-    
+
     <?php include 'includes/sidebar.php'; ?>
 
     <!-- Main Content Wrapper (Solid Indigo Background) -->
     <div class="flex-1 flex flex-col md:pl-64 min-h-screen relative bg-indigo-100 dark:bg-slate-950">
-        
+
         <?php include 'includes/topnavbar.php'; ?>
 
         <!-- Scrollable Content -->
         <main class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8">
-            
+
             <!-- Stats Overview -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
                 <div class="bg-indigo-50 dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-indigo-200 dark:border-slate-800 flex items-center justify-between group hover:border-indigo-300 dark:hover:border-indigo-700 transition-colors">
@@ -60,56 +62,105 @@ $orders = OrderService::fetchALLorders();
                     <i data-lucide="plus" class="w-6 h-6"></i>
                 </button>
             </div>
-            
+
             <div class="space-y-5">
-                
-                <?php 
+
+                <?php
                 // Placeholder for PHP Loop
                 // foreach ($orders as $order) { 
                 ?>
                 <!-- Card 1: Pending Offers -->
-                <div class="bg-indigo-50 dark:bg-slate-900 rounded-2xl shadow-sm border border-indigo-200 dark:border-slate-800 p-5 transition-all hover:shadow-md hover:border-indigo-300 dark:hover:border-slate-700 relative overflow-hidden">
-                    <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-yellow-400"></div>
-                    <div class="flex flex-col md:flex-row justify-between md:items-start gap-5 pl-2">
-                        <div class="flex-1">
-                            <div class="flex flex-wrap items-center gap-3 mb-2">
-                                <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 flex items-center gap-1.5 border border-yellow-200 dark:border-yellow-800">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse"></span>
-                                    Pending Offers
-                                </span>
-                                <span class="text-xs text-slate-500 font-mono">#ORD-8832</span>
-                                <span class="text-xs text-slate-400">• 2 hours ago</span>
+                <?php
+                // Example simulation of your database fetch
+                // $orders = $pdo->query("SELECT * FROM orders")->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($orders as $order):
+                    // Dynamic Styling Logic based on Status
+                    // You can adjust these cases based on your actual status values in the DB
+                    $statusColor = 'indigo'; // Default color
+                    $statusIcon = 'package'; // Default icon
+
+                    switch (strtolower($order['status'])) {
+                        case 'pending':
+                        case 'pending offers':
+                            $statusColor = 'yellow';
+                            break;
+                        case 'delivered':
+                        case 'completed':
+                            $statusColor = 'emerald';
+                            break;
+                        case 'cancelled':
+                            $statusColor = 'red';
+                            break;
+                    }
+                ?>
+
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-5 transition-all hover:shadow-md hover:border-<?= $statusColor ?>-300 dark:hover:border-<?= $statusColor ?>-700 relative overflow-hidden mb-4">
+
+                        <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-<?= $statusColor ?>-400"></div>
+
+                        <div class="flex flex-col md:flex-row justify-between md:items-start gap-5 pl-2">
+                            <div class="flex-1">
+                                <div class="flex flex-wrap items-center gap-3 mb-2">
+                                    <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-<?= $statusColor ?>-50 text-<?= $statusColor ?>-700 dark:bg-<?= $statusColor ?>-900/30 dark:text-<?= $statusColor ?>-400 flex items-center gap-1.5 border border-<?= $statusColor ?>-200 dark:border-<?= $statusColor ?>-800">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-<?= $statusColor ?>-500 animate-pulse"></span>
+                                        <?= htmlspecialchars($order['status']) ?>
+                                    </span>
+
+                                    <span class="text-xs text-slate-500 font-mono">#ORD-<?= htmlspecialchars($order['id']) ?></span>
+
+                                    <span class="text-xs text-slate-500 font-medium flex items-center gap-1">
+                                        <i data-lucide="scale" class="w-3 h-3"></i>
+                                        <?= htmlspecialchars($order['weight']) ?>kg
+                                    </span>
+
+                                    <span class="text-xs text-slate-400">• 2 hours ago</span>
+                                </div>
+
+                                <div class="flex justify-between items-start pr-4">
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1.5">
+                                        <?= htmlspecialchars($order['title']) ?>
+                                    </h3>
+                                    <span class="text-lg font-bold text-indigo-600 dark:text-indigo-400">
+                                        $<?= number_format($order['price'], 2) ?>
+                                    </span>
+                                </div>
+
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 max-w-2xl line-clamp-2">
+                                    <?= htmlspecialchars($order['description']) ?>
+                                </p>
+
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-4 text-sm bg-slate-50 dark:bg-slate-800/60 p-1.5 rounded-md border border-slate-200 dark:border-slate-700 shadow-sm inline-flex">
+                                    <div class="flex items-center text-slate-700 dark:text-slate-300">
+                                        <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-indigo-500 dark:text-indigo-400"></i>
+                                        <span class="font-semibold mr-1">To:</span> Home (123 Main St)
+                                    </div>
+                                </div>
                             </div>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1.5">PlayStation 5 Console</h3>
-                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 max-w-2xl">Fragile handling required, please deliver before 6 PM today.</p>
-                            
-                            <div class="flex flex-col sm:flex-row sm:items-center gap-4 text-sm bg-white/60 dark:bg-slate-800/60 p-1.5 rounded-md border border-indigo-300 dark:border-indigo-500/30 shadow-sm inline-flex">
-                                <div class="flex items-center text-slate-700 dark:text-slate-300">
-                                    <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-indigo-500 dark:text-indigo-400"></i>
-                                    <span class="font-semibold mr-1">To:</span> Home (123 Main St)
+
+                            <div class="flex flex-row md:flex-col gap-2 items-center md:items-end w-full md:w-auto mt-2 md:mt-0 border-t md:border-t-0 border-slate-200 dark:border-slate-800 pt-4 md:pt-0">
+                                <button onclick="toggleModal('viewOffersModal', <?= $order['id'] ?>)" class="flex-1 md:flex-none w-full md:w-auto flex items-center justify-center px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-all shadow-sm shadow-indigo-500/20 active:scale-95">
+                                    <i data-lucide="users" class="w-4 h-4 mr-2"></i>
+                                    View Offers
+                                </button>
+
+                                <div class="flex gap-2 w-full md:w-auto">
+                                    <button onclick="toggleModal('editOrderModal', <?= $order['id'] ?>)" class="flex-1 md:flex-none py-2.5 px-3 md:px-2.5 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-slate-800 rounded-xl transition-colors border border-slate-200 dark:border-slate-700 md:border-transparent" title="Edit Order">
+                                        <i data-lucide="pencil" class="w-4 h-4 mx-auto"></i>
+                                    </button>
+
+                                    <form action="cancel_order.php" method="POST" class="flex-1 md:flex-none" onsubmit="return confirm('Are you sure you want to cancel Order #<?= $order['id'] ?>?');">
+                                        <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                                        <button type="submit" class="w-full h-full py-2.5 px-3 md:px-2.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors border border-slate-200 dark:border-slate-700 md:border-transparent" title="Cancel Order">
+                                            <i data-lucide="trash-2" class="w-4 h-4 mx-auto"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="flex flex-row md:flex-col gap-2 items-center md:items-end w-full md:w-auto mt-2 md:mt-0 border-t md:border-t-0 border-indigo-200 dark:border-slate-800 pt-4 md:pt-0">
-                            <button onclick="toggleModal('viewOffersModal')" class="flex-1 md:flex-none w-full md:w-auto flex items-center justify-center px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-all shadow-sm shadow-indigo-500/20 active:scale-95">
-                                <i data-lucide="users" class="w-4 h-4 mr-2"></i>
-                                View 3 Offers
-                            </button>
-                            <div class="flex gap-2 w-full md:w-auto">
-                                <button onclick="toggleModal('editOrderModal')" class="flex-1 md:flex-none py-2.5 px-3 md:px-2.5 text-slate-500 hover:text-indigo-600 hover:bg-indigo-100 dark:hover:bg-slate-800 rounded-xl transition-colors border border-indigo-200 dark:border-slate-700 md:border-transparent" title="Edit Order">
-                                    <i data-lucide="pencil" class="w-4 h-4 mx-auto"></i>
-                                </button>
-                                <form action="cancel_order.php" method="POST" class="flex-1 md:flex-none" onsubmit="return confirm('Are you sure you want to cancel this order?');">
-                                    <input type="hidden" name="order_id" value="8832">
-                                    <button type="submit" class="w-full h-full py-2.5 px-3 md:px-2.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors border border-indigo-200 dark:border-slate-700 md:border-transparent" title="Cancel Order">
-                                        <i data-lucide="trash-2" class="w-4 h-4 mx-auto"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
                     </div>
-                </div>
+
+                <?php endforeach; ?>
 
                 <!-- Card 2: Shipped -->
                 <div class="bg-indigo-50 dark:bg-slate-900 rounded-2xl shadow-sm border border-indigo-200 dark:border-slate-800 p-5 transition-all hover:shadow-md hover:border-indigo-300 dark:hover:border-slate-700 relative overflow-hidden">
@@ -124,7 +175,7 @@ $orders = OrderService::fetchALLorders();
                                 <span class="text-xs text-slate-500 font-mono">#ORD-8821</span>
                             </div>
                             <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Important Legal Documents</h3>
-                            
+
                             <div class="bg-white/50 dark:bg-slate-800/50 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-indigo-200 dark:border-slate-800">
                                 <div class="flex items-center gap-3 flex-1">
                                     <div class="h-10 w-10 rounded-full bg-white dark:bg-slate-700 flex items-center justify-center shrink-0 border border-indigo-200 dark:border-slate-600 shadow-sm">
@@ -148,7 +199,7 @@ $orders = OrderService::fetchALLorders();
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="flex flex-col gap-2.5 items-center md:items-end w-full md:w-auto mt-4 md:mt-0 border-t md:border-t-0 border-indigo-200 dark:border-slate-800 pt-4 md:pt-0">
                             <form action="confirm_delivery.php" method="POST" class="w-full md:w-auto">
                                 <input type="hidden" name="order_id" value="8821">
@@ -161,10 +212,10 @@ $orders = OrderService::fetchALLorders();
                     </div>
                 </div>
 
-                <?php 
+                <?php
                 // } // End foreach
                 ?>
-                
+
             </div>
         </main>
     </div>
