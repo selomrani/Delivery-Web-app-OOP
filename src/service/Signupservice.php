@@ -8,8 +8,7 @@ use Web\Actions\Driverdata;
 class Signupservice {
 
     public static function RegisterNewClient() {
-        $db = new ConnectDb();
-        $pdo = $db->connect();
+        $pdo = ConnectDb::connect();
         $clientObj = new Clientdata();
         $userData = $clientObj->getData();
 
@@ -21,8 +20,7 @@ class Signupservice {
     }
 
     public static function RegisterNewDriver() {
-        $db = new ConnectDb();
-        $pdo = $db->connect();
+        $pdo = ConnectDb::connect();
         $driverObj = new Driverdata();
         $driverdata = $driverObj->getData();
         $vehicule_data = $driverObj->getvehiculedata();

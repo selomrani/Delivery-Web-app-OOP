@@ -1,6 +1,6 @@
 <?php
 
-namespace App\service;
+namespace App\Service;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 class UserLogoutService

@@ -41,7 +41,7 @@
                         <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
                 </div>
-                <form action="process_order.php" method="POST" class="p-6 space-y-6">
+                <form action="../Actions/process_order.php" method="POST" class="p-6 space-y-6">
                      <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-4 flex items-start gap-3 border border-indigo-100 dark:border-indigo-800/50">
                         <div class="p-2 bg-indigo-100 dark:bg-indigo-800 rounded-lg shrink-0 text-indigo-600 dark:text-indigo-300">
                             <i data-lucide="map-pin" class="w-5 h-5"></i>
@@ -55,7 +55,11 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Item Description</label>
-                        <input type="text" name="item_description" class="block w-full rounded-xl border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-14 px-4 text-lg" placeholder="What are we delivering?">
+                        <input type="text" name="description" class="block w-full rounded-xl border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-14 px-4 text-lg" placeholder="What are we delivering?">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Price</label>
+                        <input type="text" name="price" class="block w-full rounded-xl border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-14 px-4 text-lg" placeholder="What are we delivering?">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Approximate Weight</label>
@@ -74,6 +78,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="user_id" value="<?php echo$_SESSION['id'] ?>">
                     <div class="flex gap-3 pt-2">
                         <button type="button" onclick="toggleModal('createOrderModal')" class="flex-1 justify-center rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm hover:bg-indigo-50 dark:hover:bg-slate-700 transition-colors">Cancel</button>
                         <button type="submit" class="flex-1 justify-center rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors">Create Order</button>

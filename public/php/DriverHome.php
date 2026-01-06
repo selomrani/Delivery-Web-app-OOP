@@ -1,4 +1,6 @@
-<?php include 'includes/style.php'; ?>
+<?php 
+session_start();
+include 'includes/style.php'; ?>
 
 <div class="flex h-screen overflow-hidden">
     
