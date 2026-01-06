@@ -41,4 +41,13 @@ class Data
             'user_id'     => $_POST['user_id'],
         ];
     }
+    public function GetAddressData(){
+        return [
+            'country' => $_POST['country'],
+            'city' => $_POST['city'],
+            'zipcode' => $_POST['zipcode'],
+            'house_number' => $_POST['house_number'],
+            'street_name' => $_POST['street_name'],
+        ];
+    }
 }

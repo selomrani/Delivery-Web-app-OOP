@@ -3,7 +3,6 @@ namespace App\Database;
 
 use PDO;
 use PDOException;
-
 class ConnectDb {
     private static $conn = null; 
     private $pdo;
@@ -22,7 +21,6 @@ class ConnectDb {
             die("Connection Error: " . $e->getMessage());
         }
     }
-
     public static function connect() {
         if (self::$conn === null) {
             self::$conn = new self();
