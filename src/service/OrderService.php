@@ -1,8 +1,9 @@
 <?php
 namespace App\Service;
+require_once __DIR__ . '/../../vendor/autoload.php';
 use App\Database\ConnectDb;
 use Web\Actions\Data;
-
+use PDO;    
 class OrderService
 {
     public static function CreateOrder()
@@ -22,7 +23,13 @@ class OrderService
     }
     public static function fetchALLorders(){
         $pdo = ConnectDb::connect();
-        $query = "SELECT * FROM orders";
-        $stmt = $pdo->prepare()
+        $query = "SELECT * FROM orders;";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
     }
 }
+
+$orders = OrderService::fetchALLorders();
+var_dump($orders);
