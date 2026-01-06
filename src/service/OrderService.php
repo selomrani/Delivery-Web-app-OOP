@@ -1,6 +1,5 @@
 <?php
 namespace App\Service;
-require_once __DIR__ . '/../../vendor/autoload.php';
 use App\Database\ConnectDb;
 use Web\Actions\Data;
 use PDO;    
@@ -11,7 +10,7 @@ class OrderService
         $pdo = ConnectDb::connect();
         $orderobj = new Data();
         $orderinfos = $orderobj->GetOrderData();
-        $query = "INSERT INTO orders (price,weight,description,user_id) VALUES (:price,:weight,:description,:user_id)";
+        $query = "INSERT INTO orders (price,weight,description,user_id,title) VALUES (:price,:weight,:description,:user_id,:title)";
         $stmt = $pdo->prepare($query);
         $stmt->execute($orderinfos);
         $adressinfos = $orderobj->GetAddressData();
@@ -30,6 +29,3 @@ class OrderService
         return $results;
     }
 }
-
-$orders = OrderService::fetchALLorders();
-var_dump($orders);

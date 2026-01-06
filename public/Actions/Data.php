@@ -39,6 +39,7 @@ class Data
             'weight'      => $_POST['weight'],
             'description' => $_POST['description'],
             'user_id'     => $_POST['user_id'],
+            'title' => $_POST['title'],
         ];
     }
     public function GetAddressData(){

@@ -3,7 +3,6 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 session_start();
 use App\Service\OrderService;
 $orders = OrderService::fetchALLorders();
-var_dump($orders)
 ?>
 <?php include 'includes/style.php'; ?>
 
