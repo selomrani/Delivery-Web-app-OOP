@@ -4,5 +4,9 @@ class Order{
     private $weight;
     private $description;
     private $status;
-
+    public function __construct($price,$weight,$description){
+        $this->price = $price;
+        $this->weight = $weight;
+        $this->description = $description;
+    }
 }
