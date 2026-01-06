@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,8 +57,8 @@
                     <div class="flex items-center gap-x-2">
                         <img class="object-cover w-9 h-9 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar">
                         <div>
-                            <h4 class="font-medium text-gray-700 dark:text-gray-200">John Doe</h4>
-                            <p class="text-xs font-medium text-gray-500 dark:text-gray-400">john@swiftdrop.com</p>
+                            <h4 class="font-medium text-gray-700 dark:text-gray-200"><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname'] ?></h4>
+                            <p class="text-xs font-medium text-gray-500 dark:text-gray-400"><?php echo$_SESSION['email'] ?></p>
                         </div>
                     </div>
                 </div>

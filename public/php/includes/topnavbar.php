@@ -23,7 +23,7 @@
                 JD
             </div>
             <div class="hidden sm:block text-left pr-2">
-                <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 leading-none">John Doe</p>
+                <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 leading-none"><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname'] ?></p>
             </div>
             <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400 hidden sm:block mr-1"></i>
         </div>

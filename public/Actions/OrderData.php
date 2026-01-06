@@ -1,6 +1,5 @@
 <?php
 namespace Web\Actions;
-
 class OrderData {
     public function getData(): array {
         return [

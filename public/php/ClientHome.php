@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include 'includes/style.php'; ?>
 
 <div class="flex h-screen overflow-hidden">
@@ -61,7 +62,6 @@
                 // Placeholder for PHP Loop
                 // foreach ($orders as $order) { 
                 ?>
-                
                 <!-- Card 1: Pending Offers -->
                 <div class="bg-indigo-50 dark:bg-slate-900 rounded-2xl shadow-sm border border-indigo-200 dark:border-slate-800 p-5 transition-all hover:shadow-md hover:border-indigo-300 dark:hover:border-slate-700 relative overflow-hidden">
                     <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-yellow-400"></div>
