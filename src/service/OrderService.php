@@ -1,17 +1,40 @@
 <?php
 namespace App\Service;
 use App\Database\ConnectDb;
-use Web\Actions\OrderData;
-require_once './vendor/autoload.php';
+use Web\Actions\Data;
+use PDO;    
 class OrderService
 {
-    public static function CreateOrder($data)
+    public static function CreateOrder()
     {
         $pdo = ConnectDb::connect();
-        $orderobj = new OrderData();
-        $orderinfos = $orderobj->getData();
-        $query = "INSERT INTO orders (price,weight,description,user_id) VALUES (:price,:weight,:description,:user_id)";
+        $orderobj = new Data();
+        $orderinfos = $orderobj->GetOrderData();
+        $query = "INSERT INTO orders (price,weight,description,user_id,title) VALUES (:price,:weight,:description,:user_id,:title)";
         $stmt = $pdo->prepare($query);
-        $stmt->execute([$data]);
+        $stmt->execute($orderinfos);
+        $adressinfos = $orderobj->GetAddressData();
+        $order_id = $pdo->lastInsertId();
+        $adressinfos['order_id'] = $order_id;
+        $AddressQuery = "INSERT INTO addresses (country,city,zipcode,house_number,street_name,order_id) VALUES (:country,:city,:zipcode,:house_number,:street_name,:order_id)";
+        $stmt = $pdo->prepare($AddressQuery);
+        $stmt->execute($adressinfos);
+    }
+    public static function fetchALLorders(){
+        $pdo = ConnectDb::connect();
+        $query = "SELECT * FROM orders;";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+    public static function ordercount($status){
+        $pdo = ConnectDb::connect();
+        $query = "SELECT * FROM orders WHERE status = :status";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute(['status' => $status]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $count = count($result);
+        return $count;
     }
 }

@@ -2,16 +2,15 @@
 namespace App\Service;
 
 use App\Database\ConnectDb;
-use Web\Actions\Clientdata;
+use Web\Actions\Data;
 use Web\Actions\Driverdata; 
 
 class Signupservice {
 
     public static function RegisterNewClient() {
         $pdo = ConnectDb::connect();
-        $clientObj = new Clientdata();
-        $userData = $clientObj->getData();
-
+        $clientObj = new Data();
+        $userData = $clientObj->GetClientData();
         $query = "INSERT INTO Users (firstname, lastname, phone, email, role, password) 
                   VALUES (:firstname, :lastname, :phone, :email, :role, :password)";
                   
@@ -21,8 +20,8 @@ class Signupservice {
 
     public static function RegisterNewDriver() {
         $pdo = ConnectDb::connect();
-        $driverObj = new Driverdata();
-        $driverdata = $driverObj->getData();
+        $driverObj = new Data();
+        $driverdata = $driverObj->GetDriverData();
         $vehicule_data = $driverObj->getvehiculedata();
         $queryDriver = "INSERT INTO Users (firstname,lastname,phone,email,role,password) VALUES (:firstname,:lastname,:phone,:email,:role,:password)";
         $stmt = $pdo->prepare($queryDriver);
