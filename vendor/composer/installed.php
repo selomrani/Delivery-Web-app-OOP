@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'asusrogstrix/delivery-web-app-oop',
+        'name' => 'soufyan/delivery-web-app-oop',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'c10f775f6badb79b9e8f6ee2e371b66bb8554ca2',
+        'reference' => '77c0ddedf2aeec5039be2259e3c9343e5c284335',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'asusrogstrix/delivery-web-app-oop' => array(
+        'soufyan/delivery-web-app-oop' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'c10f775f6badb79b9e8f6ee2e371b66bb8554ca2',
+            'reference' => '77c0ddedf2aeec5039be2259e3c9343e5c284335',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php
+
+require_once __DIR__ . '/../../vendor/autoload.php'; 
+session_start();
+use App\Service\AdminService;
+$clientscount = AdminService::userscount('client');
+$driverscount = AdminService::userscount('driver')
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,7 +126,7 @@
                         </div>
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Customers</p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">573</p>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"><?= htmlspecialchars($clientscount) ?></p>
                         </div>
                     </div>
                     <!-- Card 4 -->
@@ -129,7 +136,7 @@
                         </div>
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Drivers</p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">45</p>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"><?= htmlspecialchars($driverscount) ?></p>
                         </div>
                     </div>
                 </div>
