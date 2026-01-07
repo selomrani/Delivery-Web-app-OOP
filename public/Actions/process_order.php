@@ -5,7 +5,7 @@ use Web\Actions\Data;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $orderinfos = new Data();
-        OrderService::CreateOrder($orderinfos);
+        OrderService::CreateOrder();
         header("Location: ../php/ClientHome.php");
         exit();
     } catch (Exception $e) {
