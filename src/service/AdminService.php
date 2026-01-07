@@ -30,4 +30,13 @@ class AdminService{
         $count = count($result);
         return $count;
     }
+    public static function fetchAllordersCount(): int{
+        $pdo = ConnectDb::connect();
+        $query = "SELECT * FROM orders";
+        $stmt =$pdo->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS);
+        $count = count($result);
+        return $count;
+    }
 }

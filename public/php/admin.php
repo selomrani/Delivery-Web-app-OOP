@@ -4,7 +4,8 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 session_start();
 use App\Service\AdminService;
 $clientscount = AdminService::userscount('client');
-$driverscount = AdminService::userscount('driver')
+$driverscount = AdminService::userscount('driver');
+$totalorders = AdminService::fetchAllordersCount();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,7 +117,7 @@ $driverscount = AdminService::userscount('driver')
                         </div>
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Total Orders</p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">2,345</p>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"><?= htmlspecialchars($totalorders) ?></p>
                         </div>
                     </div>
                     <!-- Card 3 -->
