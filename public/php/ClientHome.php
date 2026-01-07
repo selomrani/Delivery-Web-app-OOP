@@ -3,6 +3,9 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 session_start();
 use App\Service\OrderService;
 $orders = OrderService::fetchALLorders();
+$count = OrderService::ordercount('pending');
+$completed = OrderService::ordercount('completed');
+$active = OrderService::ordercount('active')
 ?>
 <?php include 'includes/style.php'; ?>
 
@@ -23,7 +26,7 @@ $orders = OrderService::fetchALLorders();
                 <div class="bg-indigo-50 dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-indigo-200 dark:border-slate-800 flex items-center justify-between group hover:border-indigo-300 dark:hover:border-indigo-700 transition-colors">
                     <div>
                         <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Active Orders</p>
-                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white">2</h3>
+                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white"><?= htmlspecialchars($active) ?></h3>
                     </div>
                     <div class="p-3.5 bg-indigo-100 dark:bg-indigo-900/20 rounded-xl text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform">
                         <i data-lucide="package" class="w-6 h-6"></i>
@@ -32,7 +35,7 @@ $orders = OrderService::fetchALLorders();
                 <div class="bg-indigo-50 dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-indigo-200 dark:border-slate-800 flex items-center justify-between group hover:border-orange-300 dark:hover:border-orange-700 transition-colors">
                     <div>
                         <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Pending Offers</p>
-                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white">1</h3>
+                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white"><?= htmlspecialchars($count) ?></h3>
                     </div>
                     <div class="p-3.5 bg-orange-50 dark:bg-orange-900/20 rounded-xl text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform">
                         <i data-lucide="ticket" class="w-6 h-6"></i>
@@ -41,7 +44,7 @@ $orders = OrderService::fetchALLorders();
                 <div class="bg-indigo-50 dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-indigo-200 dark:border-slate-800 flex items-center justify-between group hover:border-green-300 dark:hover:border-green-700 transition-colors">
                     <div>
                         <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Completed</p>
-                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white">14</h3>
+                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white"><?= htmlspecialchars($completed) ?></h3>
                     </div>
                     <div class="p-3.5 bg-green-50 dark:bg-green-900/20 rounded-xl text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform">
                         <i data-lucide="check-circle" class="w-6 h-6"></i>

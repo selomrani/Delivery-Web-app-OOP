@@ -28,4 +28,13 @@ class OrderService
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
+    public static function ordercount($status){
+        $pdo = ConnectDb::connect();
+        $query = "SELECT * FROM orders WHERE status = :status";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute(['status' => $status]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $count = count($result);
+        return $count;
+    }
 }
