@@ -1,7 +1,5 @@
 <?php
-
 namespace Web\Actions;
-
 class Data
 {
     public function GetClientData(): array
@@ -49,6 +47,13 @@ class Data
             'zipcode' => $_POST['zipcode'],
             'house_number' => $_POST['house_number'],
             'street_name' => $_POST['street_name'],
+        ];
+    }
+    public function GetOfferData(): array{
+        return[
+            "price" => $_POST['price'],
+            'note' => $_POST['note'],
+            'estimated_time' => $_POST['estimated_time'],
         ];
     }
 }

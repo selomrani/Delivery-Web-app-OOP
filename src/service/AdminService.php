@@ -3,7 +3,6 @@ namespace Src\Service\AdminService;
 require './vendor/autoload.php';
 use App\Database\ConnectDb;
 use PDO;
-
 class AdminService{
    public static function fetchUsers($role){
     $db = new ConnectDb();
