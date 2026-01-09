@@ -1,9 +1,12 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
+
+use App\Service\AdminService;
 use App\Service\OrderService;
 session_start();
 include 'includes/style.php'; 
 $Availableorders = OrderService::fetchALLorders();
+$orderscount = AdminService::fetchAllordersCount()
 ?>
 <div class="flex h-screen overflow-hidden">
     
@@ -52,7 +55,7 @@ $Availableorders = OrderService::fetchALLorders();
             <div class="mb-6">
                 <h2 class="text-xl font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-4">
                     Available Orders
-                    <span class="px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-slate-800 text-indigo-600 dark:text-slate-300 text-xs font-semibold border border-indigo-200 dark:border-slate-700">5 Nearby</span>
+                    <span class="px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-slate-800 text-indigo-600 dark:text-slate-300 text-xs font-semibold border border-indigo-200 dark:border-slate-700"><?= htmlspecialchars($orderscount); ?> Nearby</span>
                 </h2>
                 
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -71,7 +74,7 @@ $Availableorders = OrderService::fetchALLorders();
                         <div class="flex items-center gap-2 mt-2">
                             <div class="w-6 h-6 rounded-full bg-indigo-200 dark:bg-indigo-900 flex items-center justify-center text-xs font-bold text-indigo-700 dark:text-indigo-300"> JS </div>
                             <p class="text-xs text-slate-600 dark:text-slate-400">
-                                <span class="font-semibold text-slate-900 dark:text-white">John Smith</span> • <a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">View Profile</a>
+                                <span class="font-semibold text-slate-900 dark:text-white"><?php echo $order['firstname'] . " " . $order['lastname'] ?></span> • <a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">View Profile</a>
                             </p>
                         </div>
                     </div>
