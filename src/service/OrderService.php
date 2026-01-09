@@ -20,9 +20,14 @@ class OrderService
         $stmt = $pdo->prepare($AddressQuery);
         $stmt->execute($adressinfos);
     }
-    public static function fetchALLorders(){
+public static function fetchALLorders(){
         $pdo = ConnectDb::connect();
-        $query = "SELECT * FROM orders;";
+        $query = "SELECT 
+                    orders.*, 
+                    Users.firstname, 
+                    Users.lastname 
+                  FROM orders 
+                  LEFT JOIN Users ON orders.user_id = Users.id";
         $stmt = $pdo->prepare($query);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
