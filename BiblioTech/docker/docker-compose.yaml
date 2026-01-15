@@ -1,0 +1,46 @@
+services:
+  web:
+    build: .
+    container_name: BiblioTechs
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html  
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: xx
+      MYSQL_DATABASE: BiblioTechDb
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mvc-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 77
+      MYSQL_DATABASE: BiblioTechDb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 77
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: BiblioTech
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_USER: root       
+      PMA_PASSWORD: 77
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:

@@ -11,6 +11,10 @@ class ComposerStaticInit81e807c59e04ddf36673070f8be885a6
         array (
             'Web\\' => 4,
         ),
+        'B' =>
+        array (
+            'Bib\\' => 4,
+        ),
         'A' =>
         array (
             'App\\' => 4,
@@ -21,6 +25,10 @@ class ComposerStaticInit81e807c59e04ddf36673070f8be885a6
         'Web\\' =>
         array (
             0 => __DIR__ . '/../..' . '/public',
+        ),
+        'Bib\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/BiblioTech',
         ),
         'App\\' =>
         array (
