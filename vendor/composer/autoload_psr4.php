@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Web\\' => array($baseDir . '/public'),
+    'BiblioTech' => array($baseDir . '/BiblioTech'),
     'App\\' => array($baseDir . '/src'),
 );
